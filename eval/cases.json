@@ -1,0 +1,390 @@
+[
+  {
+    "id": "case-01",
+    "repo": "shop_api",
+    "path": "api.py",
+    "before": "limit: int = 10",
+    "after": "limit: int = 20",
+    "description": "Default product limit becomes 20",
+    "expected_document": "docs/api.md",
+    "required_evidence": [
+      "docs/api.md"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-02",
+    "repo": "shop_api",
+    "path": "api.py",
+    "before": "@app.get(\"/products\")",
+    "after": "@app.get(\"/catalog\")",
+    "description": "Products route is renamed",
+    "expected_document": "docs/api.md",
+    "required_evidence": [
+      "docs/api.md"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-03",
+    "repo": "shop_api",
+    "path": "api.py",
+    "before": "quantity: int = 1",
+    "after": "quantity: int = 2",
+    "description": "Default order quantity becomes 2",
+    "expected_document": "docs/api.md",
+    "required_evidence": [
+      "pricing.py",
+      "docs/api.md"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-04",
+    "repo": "shop_api",
+    "path": "api.py",
+    "before": "calculate_total(10, quantity)",
+    "after": "calculate_total(12, quantity)",
+    "description": "Unit price becomes twelve",
+    "expected_document": "docs/api.md",
+    "required_evidence": [
+      "pricing.py",
+      "docs/api.md"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-05",
+    "repo": "shop_api",
+    "path": "api.py",
+    "before": "\"cancelled\": True",
+    "after": "\"status\": \"cancelled\"",
+    "description": "Cancellation response schema changes",
+    "expected_document": "docs/api.md",
+    "required_evidence": [
+      "docs/api.md"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-06",
+    "repo": "shop_api",
+    "path": "pricing.py",
+    "before": "discount: float = 0",
+    "after": "discount: float = 0.05",
+    "description": "Default discount becomes five percent",
+    "expected_document": "docs/pricing.md",
+    "required_evidence": [
+      "docs/pricing.md",
+      "api.py"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-07",
+    "repo": "shop_api",
+    "path": "pricing.py",
+    "before": "(1 - discount), 2",
+    "after": "(1 - discount), 3",
+    "description": "Total precision increases",
+    "expected_document": "docs/pricing.md",
+    "required_evidence": [
+      "docs/pricing.md"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-08",
+    "repo": "shop_api",
+    "path": "pricing.py",
+    "before": "\"WELCOME\": 0.1",
+    "after": "\"WELCOME\": 0.15",
+    "description": "Welcome discount increases",
+    "expected_document": "docs/pricing.md",
+    "required_evidence": [
+      "docs/pricing.md",
+      "tests/test_shop.py"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-09",
+    "repo": "shop_api",
+    "path": "pricing.py",
+    "before": "{\"WELCOME\": 0.1}",
+    "after": "{\"WELCOME\": 0.1, \"VIP\": 0.2}",
+    "description": "New VIP discount",
+    "expected_document": "docs/pricing.md",
+    "required_evidence": [
+      "docs/pricing.md"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-10",
+    "repo": "shop_api",
+    "path": "inventory.py",
+    "before": "quantity <= available",
+    "after": "quantity < available",
+    "description": "Stock check becomes strict",
+    "expected_document": "docs/inventory.md",
+    "required_evidence": [
+      "docs/inventory.md"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-11",
+    "repo": "shop_api",
+    "path": "inventory.py",
+    "before": "raise ValueError(\"Insufficient stock\")",
+    "after": "return None",
+    "description": "Reservation failure returns None",
+    "expected_document": "docs/inventory.md",
+    "required_evidence": [
+      "docs/inventory.md"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-12",
+    "repo": "shop_api",
+    "path": "api.py",
+    "before": "def list_products(limit: int = 10):",
+    "after": "def list_products(limit: int = 10, offset: int = 0):",
+    "description": "New offset parameter",
+    "expected_document": "docs/api.md",
+    "required_evidence": [
+      "docs/api.md"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-13",
+    "repo": "shop_api",
+    "path": "pricing.py",
+    "before": "return round(price * quantity * (1 - discount), 2)",
+    "after": "subtotal = price * quantity\n    return round(subtotal * (1 - discount), 2)",
+    "description": "Internal variable extraction",
+    "expected_document": null,
+    "required_evidence": [],
+    "requires_update": false
+  },
+  {
+    "id": "case-14",
+    "repo": "shop_api",
+    "path": "inventory.py",
+    "before": "return available - quantity",
+    "after": "# Subtract the requested amount.\n    return available - quantity",
+    "description": "Comment-only change",
+    "expected_document": null,
+    "required_evidence": [],
+    "requires_update": false
+  },
+  {
+    "id": "case-15",
+    "repo": "shop_api",
+    "path": "api.py",
+    "before": "return {\"products\": list(range(limit))}",
+    "after": "products = list(range(limit))\n    return {\"products\": products}",
+    "description": "Internal result variable",
+    "expected_document": null,
+    "required_evidence": [],
+    "requires_update": false
+  },
+  {
+    "id": "case-16",
+    "repo": "task_api",
+    "path": "api.py",
+    "before": "limit: int = 25",
+    "after": "limit: int = 50",
+    "description": "Default task limit becomes 50",
+    "expected_document": "docs/api.md",
+    "required_evidence": [
+      "storage.py",
+      "docs/api.md"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-17",
+    "repo": "task_api",
+    "path": "api.py",
+    "before": "priority: int = 1",
+    "after": "priority: int = 3",
+    "description": "Default task priority becomes 3",
+    "expected_document": "docs/api.md",
+    "required_evidence": [
+      "storage.py",
+      "docs/api.md"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-18",
+    "repo": "task_api",
+    "path": "api.py",
+    "before": "@app.get(\"/tasks\")",
+    "after": "@app.get(\"/items\")",
+    "description": "Task list route renamed",
+    "expected_document": "docs/api.md",
+    "required_evidence": [
+      "docs/api.md"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-19",
+    "repo": "task_api",
+    "path": "api.py",
+    "before": "\"status\": \"ready\"",
+    "after": "\"status\": \"ok\"",
+    "description": "Health response changes",
+    "expected_document": "docs/api.md",
+    "required_evidence": [
+      "docs/api.md"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-20",
+    "repo": "task_api",
+    "path": "storage.py",
+    "before": "return TASKS[:limit]",
+    "after": "return list(reversed(TASKS))[:limit]",
+    "description": "Newest tasks returned first",
+    "expected_document": "docs/storage.md",
+    "required_evidence": [
+      "docs/storage.md",
+      "api.py"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-21",
+    "repo": "task_api",
+    "path": "storage.py",
+    "before": "title.strip()",
+    "after": "title",
+    "description": "Preserve title whitespace",
+    "expected_document": "docs/storage.md",
+    "required_evidence": [
+      "docs/storage.md"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-22",
+    "repo": "task_api",
+    "path": "storage.py",
+    "before": "\"priority\": priority",
+    "after": "\"priority\": priority, \"completed\": False",
+    "description": "Stored tasks gain completion flag",
+    "expected_document": "docs/storage.md",
+    "required_evidence": [
+      "docs/storage.md",
+      "api.py"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-23",
+    "repo": "task_api",
+    "path": "storage.py",
+    "before": "TASKS.append(task)",
+    "after": "TASKS.insert(0, task)",
+    "description": "New tasks stored at front",
+    "expected_document": "docs/storage.md",
+    "required_evidence": [
+      "docs/storage.md"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-24",
+    "repo": "task_api",
+    "path": "validation.py",
+    "before": "<= 80",
+    "after": "<= 120",
+    "description": "Maximum title length increases",
+    "expected_document": "docs/validation.md",
+    "required_evidence": [
+      "docs/validation.md",
+      "tests/test_tasks.py"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-25",
+    "repo": "task_api",
+    "path": "validation.py",
+    "before": "1 <= len(title.strip())",
+    "after": "3 <= len(title.strip())",
+    "description": "Minimum title length increases",
+    "expected_document": "docs/validation.md",
+    "required_evidence": [
+      "docs/validation.md"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-26",
+    "repo": "task_api",
+    "path": "validation.py",
+    "before": "priority <= 5",
+    "after": "priority <= 10",
+    "description": "Priority range expands",
+    "expected_document": "docs/validation.md",
+    "required_evidence": [
+      "docs/validation.md",
+      "tests/test_tasks.py"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-27",
+    "repo": "task_api",
+    "path": "validation.py",
+    "before": "1 <= priority",
+    "after": "0 <= priority",
+    "description": "Zero priority becomes valid",
+    "expected_document": "docs/validation.md",
+    "required_evidence": [
+      "docs/validation.md"
+    ],
+    "requires_update": true
+  },
+  {
+    "id": "case-28",
+    "repo": "task_api",
+    "path": "storage.py",
+    "before": "return TASKS[:limit]",
+    "after": "selected = TASKS[:limit]\n    return selected",
+    "description": "Internal variable extraction",
+    "expected_document": null,
+    "required_evidence": [],
+    "requires_update": false
+  },
+  {
+    "id": "case-29",
+    "repo": "task_api",
+    "path": "api.py",
+    "before": "return {\"status\": \"ready\"}",
+    "after": "# Report readiness.\n    return {\"status\": \"ready\"}",
+    "description": "Comment-only change",
+    "expected_document": null,
+    "required_evidence": [],
+    "requires_update": false
+  },
+  {
+    "id": "case-30",
+    "repo": "task_api",
+    "path": "validation.py",
+    "before": "return 1 <= priority <= 5",
+    "after": "minimum, maximum = 1, 5\n    return minimum <= priority <= maximum",
+    "description": "Equivalent bounds refactor",
+    "expected_document": null,
+    "required_evidence": [],
+    "requires_update": false
+  }
+]

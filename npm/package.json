@@ -1,0 +1,17 @@
+{
+  "name": "@aadityarajput75/docsync",
+  "version": "0.1.0",
+  "description": "Documentation that follows your Python code, with local retrieval and developer review",
+  "type": "module",
+  "bin": { "docsync": "bin/docsync.mjs" },
+  "engines": { "node": ">=20" },
+  "os": ["win32", "darwin", "linux"],
+  "files": ["bin/", "lib/", "runtime/", "runtime-manifest.json", "README.md"],
+  "scripts": {
+    "prepack": "node scripts/bundle.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "publishConfig": { "access": "public" },
+  "license": "UNLICENSED",
+  "keywords": ["documentation", "python", "rag", "mcp", "ollama", "gemini", "cli"]
+}

@@ -1,0 +1,13 @@
+.venv/
+.docsync/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+.env
+eval/results/*.jsonl
+node_modules/
+npm/runtime/
+npm/runtime-manifest.json
+*.tgz
+
