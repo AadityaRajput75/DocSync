@@ -9,6 +9,7 @@ const destination = path.join(root, 'runtime');
 // Exact build-owned destination; never remove the application source or user repository.
 if (destination !== path.resolve(source, 'npm/runtime')) throw new Error('Invalid bundle destination');
 await rm(destination, { recursive: true, force: true });
+await copyFile(path.join(source, 'LICENSE'), path.join(root, 'LICENSE'));
 const files = {};
 async function copy(relative) {
   const target = path.join(destination, relative);
@@ -16,7 +17,7 @@ async function copy(relative) {
   await copyFile(path.join(source, relative), target);
   files[relative] = createHash('sha256').update(await readFile(target)).digest('hex');
 }
-for (const name of ['pyproject.toml', 'uv.lock', 'README.md']) await copy(name);
+for (const name of ['pyproject.toml', 'uv.lock', 'README.md', 'LICENSE']) await copy(name);
 for (const name of (await readdir(path.join(source, 'src/docsync'))).sort()) {
   if (name.endsWith('.py')) await copy(`src/docsync/${name}`);
 }

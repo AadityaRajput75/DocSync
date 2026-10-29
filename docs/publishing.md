@@ -13,7 +13,7 @@ npm test
 npm pack
 ```
 
-`prepack` copies only `pyproject.toml`, `uv.lock`, the source README, and Python application files into `runtime/`. It generates a SHA-256 manifest. The package `files` allowlist includes the launcher, runtime, manifest, and npm README. It excludes development environments, user repositories, `.docsync`, model files, and credentials.
+`prepack` copies only `pyproject.toml`, `uv.lock`, the source README, `LICENSE`, and Python application files into `runtime/`. It generates a SHA-256 manifest. The package `files` allowlist includes the launcher, runtime, manifest, and npm README. It excludes development environments, user repositories, `.docsync`, model files, and credentials.
 
 There is no install/postinstall script. First invocation performs dependency setup in a user cache; normal npm installation does not inspect repositories or start daemons. The uv installer is pinned to 0.12.18 with separate shell/PowerShell SHA-256 checksums. When updating it, inspect the official installer and update its version and checksums.
 
@@ -28,7 +28,7 @@ From a disposable Python Git repository, run `docsync`, review a proposal, save 
 
 ## Publish under the owner's account
 
-The current license metadata is `UNLICENSED` because no open-source license was selected. Choose the intended licensing terms and include the corresponding license before presenting this as an open-source package. Public npm distribution does not itself grant open-source reuse rights.
+DocSync is licensed under the MIT License. Python and npm metadata declare `MIT`; the root `LICENSE` is included in Python distributions and copied into the npm package and bundled runtime. Keep the copyright and permission notice in release artifacts.
 
 ```sh
 npm login

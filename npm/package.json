@@ -6,12 +6,12 @@
   "bin": { "docsync": "bin/docsync.mjs" },
   "engines": { "node": ">=20" },
   "os": ["win32", "darwin", "linux"],
-  "files": ["bin/", "lib/", "runtime/", "runtime-manifest.json", "README.md"],
+  "files": ["bin/", "lib/", "runtime/", "runtime-manifest.json", "README.md", "LICENSE"],
   "scripts": {
     "prepack": "node scripts/bundle.mjs",
     "test": "node --test test/*.test.mjs"
   },
   "publishConfig": { "access": "public" },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "keywords": ["documentation", "python", "rag", "mcp", "ollama", "gemini", "cli"]
 }

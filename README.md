@@ -330,4 +330,4 @@ For implementation changes, add behavioral tests where useful and keep cloud opt
 
 ## License
 
-No open-source license has been selected. The npm package is marked `UNLICENSED`; this repository currently grants no open-source license. See the [publishing guide](docs/publishing.md) before distributing a release.
+DocSync is licensed under the [MIT License](LICENSE). Contributions are welcome: open an issue to discuss a change, or submit a pull request with a clear description and relevant validation. Contributions are provided under the same MIT license.
