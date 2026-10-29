@@ -27,34 +27,9 @@ DocSync is a portfolio-stage application. Python repositories and UTF-8 Markdown
 
 ## Get started
 
-### Run from source
+### Install from npm
 
-Requirements: Git, [uv](https://docs.astral.sh/uv/), Python 3.11?3.13 (3.12 recommended), and [Ollama](https://ollama.com/download) running locally. Node.js 20+ is needed only for the npm launcher. Docker is optional when using embedded Qdrant.
-
-From your checkout of this repository, install the locked dependencies and local models:
-
-```powershell
-uv sync --locked
-ollama pull nomic-embed-text:v1.5
-ollama pull qwen2.5-coder:3b
-$env:DOCSYNC_QDRANT_MODE = "embedded"
-uv run docsync doctor
-```
-
-Then initialize a Python Git repository and prepare a proposal. Replace the example path with your project's Git root:
-
-```powershell
-uv run docsync init --project C:\path\to\your-python-project
-uv run docsync draft --project C:\path\to\your-python-project
-uv run docsync review --project C:\path\to\your-python-project
-uv run docsync watch --project C:\path\to\your-python-project
-```
-
-Keep the source terminal in this checkout so `uv run` uses DocSync's environment. Run review in another terminal with the same environment setting and project path. Add `.docsync/` to the target project's `.gitignore` before use. Existing documentation is written only after review approval.
-
-### npm installer (publication pending)
-
-The npm package **`@aadityarajput75/docsync`** is prepared locally; publication is not verified. Use the source setup above or build a local tarball below. Once the package has been published, the intended IDE-terminal installation is:
+Install [**`@aadityarajput75/docsync`**](https://www.npmjs.com/package/@aadityarajput75/docsync) from npm in your IDE terminal or an ordinary shell:
 
 ```powershell
 npm install -g @aadityarajput75/docsync
@@ -120,6 +95,31 @@ docsync review                  # Inspect and decide what to apply
 ```
 
 Once setup is complete, subsequent commands reuse the installed runtime. Generation may take minutes on a CPU. An existing overview is updated through saved code changes rather than overwritten by bootstrap. Re-running `init` preserves an established baseline.
+
+### Run from source
+
+Requirements: Git, [uv](https://docs.astral.sh/uv/), Python 3.11 to 3.13 (3.12 recommended), and [Ollama](https://ollama.com/download) running locally. Node.js 20+ is needed only for the npm launcher. Docker is optional when using embedded Qdrant.
+
+From your checkout of this repository, install the locked dependencies and local models:
+
+```powershell
+uv sync --locked
+ollama pull nomic-embed-text:v1.5
+ollama pull qwen2.5-coder:3b
+$env:DOCSYNC_QDRANT_MODE = "embedded"
+uv run docsync doctor
+```
+
+Then initialize a Python Git repository and prepare a proposal. Replace the example path with your project's Git root:
+
+```powershell
+uv run docsync init --project C:\path\to\your-python-project
+uv run docsync draft --project C:\path\to\your-python-project
+uv run docsync review --project C:\path\to\your-python-project
+uv run docsync watch --project C:\path\to\your-python-project
+```
+
+Keep the source terminal in this checkout so `uv run` uses DocSync's environment. Run review in another terminal with the same environment setting and project path. Add `.docsync/` to the target project's `.gitignore` before use. Existing documentation is written only after review approval.
 
 ### Developing or running from Python source
 

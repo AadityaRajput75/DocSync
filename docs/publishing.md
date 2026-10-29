@@ -2,7 +2,7 @@
 
 Package: **@aadityarajput75/docsync**, version **0.1.0**. It bundles the Python application and lockfile, so users do not need a source checkout or a separate PyPI publication.
 
-The package is prepared locally, not published. The registry account must own the `aadityarajput75` npm scope. A GitHub account with that name does not establish npm ownership. Authentication uses npm's normal browser/terminal flow; do not paste tokens into a chat or commit them.
+Version `0.1.0` is published on npm (verified 30 October 2026). The registry account must own the `aadityarajput75` npm scope. A GitHub account with that name does not establish npm ownership. Authentication uses npm's normal browser/terminal flow; do not paste tokens into a chat or commit them.
 
 ## Build and inspect
 
@@ -35,7 +35,7 @@ npm login
 npm whoami
 ```
 
-Confirm the authenticated account owns `@aadityarajput75`. Update the README publication-status wording when actually publishing, then rebuild and inspect the tarball. Publish that exact inspected artifact:
+Confirm the authenticated account owns `@aadityarajput75`. For the next release, update the npm and Python versions together, then rebuild and inspect the tarball. Publish that exact inspected artifact:
 
 ```sh
 npm publish ./aadityarajput75-docsync-0.1.0.tgz --access public
@@ -48,4 +48,8 @@ npm view @aadityarajput75/docsync version
 npm install -g @aadityarajput75/docsync
 ```
 
-Do not advertise registry installation as currently working until that succeeds. If 0.1.0 already exists, use a new version rather than replacing it. Keep npm and Python application versions coordinated for subsequent releases.
+Version 0.1.0 already exists; use a new version rather than replacing it. Keep npm and Python application versions coordinated for subsequent releases.
+
+## Published license metadata
+
+As of 30 October 2026, npm version `0.1.0` still declares `UNLICENSED`. The GitHub source now uses MIT. Publish a new version from the updated source to distribute the MIT license and corrected metadata on npm; changing GitHub does not update an existing npm artifact.
